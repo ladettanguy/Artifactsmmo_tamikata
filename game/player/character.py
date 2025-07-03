@@ -1,3 +1,5 @@
+import time
+
 from typing import Optional, Any, Tuple
 
 from game.player.action import Action
@@ -10,6 +12,9 @@ class Character:
         self.name: str = data["name"]
         self.action = Action(self.name)
 
+    def wait_cooldown(self):
+        time.sleep(self.get_cooldown())
+
     def get_all_data(self) -> Optional[dict[str, Any]]:
         """
         Get all data from the json response API to this character
@@ -17,7 +22,7 @@ class Character:
         """
         return request("GET", f"/characters/{self.name}").json()["data"]
 
-    def get_cooldoawn(self) -> int:
+    def get_cooldown(self) -> int:
         """
         Get the actual cooldown of this character
         :return:

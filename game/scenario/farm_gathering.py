@@ -1,22 +1,29 @@
 from game.player.character import Character
+from game.scenario.scenario import Scenario
 from utils.macros.do_and_back import do_and_back
 from utils.macros.empty_inventory_in_bank import empty_inventory_in_bank
 
 
-def farm_gathering(character: Character, farm_tile: (int, int)) -> None:
-    while True:
-        # Make sure the character is on the right tile
-        r = character.action.move(*farm_tile)
+class FarmGathering(Scenario):
 
-        if r.status_code == 490:
-            break
+    def __init__(self, character: Character, farm_tile: (int, int), *args):
+        super().__init__(*args)
+        self.character = character
+        self.farm_tile = farm_tile
 
-    # Start gathering
-    while True:
-        r = character.action.gathering()
+    def pre_loop(self):
+        self.character.wait_cooldown()
+        self.character.action.move(*self.farm_tile)
+
+
+    def loop(self):
+        r = self.character.action.gathering()
 
         if r.status_code == 497:
             # When inventory is full
 
             # Empty that in a bank and return farming
-            do_and_back(character, empty_inventory_in_bank, character, move=True)
+            do_and_back(self.character, empty_inventory_in_bank, self.character, move=True)
+
+    def post_loop(self):
+        pass
