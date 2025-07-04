@@ -4,16 +4,16 @@ from utils.macros.do_and_back import do_and_back
 from utils.macros.empty_inventory_in_bank import empty_inventory_in_bank
 
 
-class FarmeFighting(Scenario):
+class FarmFighting(Scenario):
 
-    def __init__(self, character: Character, farm_tile: (int, int)) -> None:
+    def __init__(self, character: Character, farm_tile: (int, int), *args):
+        super().__init__(*args)
         self.character = character
         self.farm_tile = farm_tile
 
     def pre_loop(self):
         self.character.wait_cooldown()
         self.character.action.move(*self.farm_tile)
-
 
     def loop(self):
         r = self.character.action.fight()
