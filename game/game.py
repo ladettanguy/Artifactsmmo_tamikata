@@ -1,5 +1,7 @@
+import asyncio
 from typing import Any
 
+from game.data.npcs_loader import NPCsLoader
 from game.scenario.nothing_to_do import NothingToDo
 from game.scenario.scenario import Scenario
 from game.player.character import Character
@@ -33,18 +35,15 @@ class Game:
         """
         This is for start the game. This function is blocking.
         """
-        for ct in self.character_thread.values():
-            ct.start()
-
-        # It's gonna be replace by the asyncio loop who schedule the websocket
-        for ct in self.character_thread.values():
-            ct.join()
+        self.run()
+        asyncio.get_event_loop().run_forever()
 
     def run(self):
         """
         This fort start the game. This function is not blocking.
         """
-        pass
+        for ct in self.character_thread.values():
+            ct.start()
 
     @staticmethod
     def create_character(name: str, skin: str) -> Character:
