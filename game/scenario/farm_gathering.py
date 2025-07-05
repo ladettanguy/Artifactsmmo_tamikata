@@ -6,10 +6,17 @@ from utils.macros.empty_inventory_in_bank import empty_inventory_in_bank
 
 class FarmGathering(Scenario):
 
-    def __init__(self, character: Character, farm_tile: (int, int), *args):
-        super().__init__(*args)
+    def __init__(self, character: Character, farm_tile: (int, int), *args, nb_loop: int =0):
+        """
+        :param character: Character object
+        :param farm_tile: Tuple[int, int]
+        :param args:
+        :param nb_loop: Number of loops (use it if you don't want a infinite loop) (0 is infinite)
+        """
+        super().__init__(*args, nb_loop=nb_loop)
         self.character = character
         self.farm_tile = farm_tile
+        self.nb_loop = nb_loop
 
     def pre_loop(self):
         self.character.wait_cooldown()

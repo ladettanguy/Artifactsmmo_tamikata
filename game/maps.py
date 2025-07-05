@@ -36,8 +36,16 @@ class Maps:
         """
         Get map info of [x, y] tile
         :param x: coord x
-        :param y:  coord y
-        :return: Optional[Dict[str, Any]]
+        :param y: coord y
+        :return: Optional[Dict[str, Any]] like:
+        {
+            "name": "Forest",
+            "skin": "forest_bank2",
+            "content": {
+                "type": "bank",
+                "code": "bank"
+            }
+        }
         """
         return cls._map_loaded.get(f"{x} {y}", None)
 

@@ -17,11 +17,11 @@ class Game:
 
     def set_scenario(self, character_name: str, scenario: type[Scenario], args=(), start=False):
         """
-
-        :param character_name:
-        :param scenario:
-        :param args:
-        :param start:
+        Set a new scenario to a character.
+        :param character_name: str, Character's name
+        :param scenario: type of Scenario
+        :param args: args for scenario __init__
+        :param start: Boolean, start the scenario now in a thread
         :return:
         """
         if self.character_thread[character_name].is_alive():
@@ -47,6 +47,12 @@ class Game:
 
     @staticmethod
     def create_character(name: str, skin: str) -> Character:
+        """
+        Create a character for the account
+        :param name: str, Name of the future character
+        :param skin: str, skin code
+        :return: Character object
+        """
         r = request("POST", "characters/create", data={"name": name, "skin": skin})
         if r.status_code != 200:
             return
@@ -66,6 +72,6 @@ class Game:
     def get_bank_item_info() -> dict[str, Any]:
         """
         Get items bank storage
-        :return: Dictionary of items bank storage
+        :return: Dictionary of items banks storage
         """
         return request("GET", "/my/bank/items").json()["data"]

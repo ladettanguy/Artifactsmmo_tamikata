@@ -5,5 +5,9 @@ class Updater(ABC):
 
     @staticmethod
     @abstractmethod
-    def update():
+    def update() -> None:
+        """
+        Update static file data from API
+        :return: None
+        """
         pass

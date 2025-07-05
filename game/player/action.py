@@ -121,16 +121,16 @@ class Action:
                        data={"quantity": quantity})
 
     @waitable
-    def bank_deposit_item(self, deposit: list[dict[str, Any]]) -> Response:
+    def bank_deposit_items(self, deposit: dict[str, int]) -> Response:
         """
         Deposit multiple items in a bank on the character's map.
         The cooldown will be 3 seconds multiplied by the number of different items withdrawn.
-        :param deposit: items and their amount. Like [{"code": item_code, "quantity": quantity}, ...]
+        :param deposit: items and their amount. Like  {item_code: quantity, ...}
         :return: requests.Response
         """
         return request("POST",
                        f"my/{self.name}/action/bank/deposit/item",
-                       data=deposit)
+                       data=[{"code": item_code, "quantity": quantity} for item_code, quantity in deposit.items()])
 
     @waitable
     def bank_withdraw_gold(self, quantity: int) -> Response:
@@ -144,16 +144,16 @@ class Action:
                        data={"quantity": quantity})
 
     @waitable
-    def bank_withdraw_item(self, withdraw_info: list[dict[str, Any]]) -> Response:
+    def bank_withdraw_items(self, withdraw: dict[str, int]) -> Response:
         """
         Take items from your bank and put them in the character's inventory.
         The cooldown will be 3 seconds multiplied by the number of different items withdrawn.
-        :param withdraw_info: withdraw info. Like [{"code": item_code, "quantity": quantity}, ...]
+        :param withdraw: items and their amount. Like  {item_code: quantity, ...}
         :return: requests.Response
         """
         return request("POST",
                        f"my/{self.name}/action/bank/withdraw/item",
-                       data=withdraw_info)
+                       data=[{"code": item_code, "quantity": quantity} for item_code, quantity in withdraw.items()])
 
     @waitable
     def bank_buy_expansion(self) -> Response:

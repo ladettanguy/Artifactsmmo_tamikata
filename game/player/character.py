@@ -13,6 +13,10 @@ class Character:
         self.action = Action(self.name)
 
     def wait_cooldown(self):
+        """
+        Wait a character cooldown with a blocking function
+        :return: None
+        """
         time.sleep(self.get_cooldown())
 
     def get_all_data(self) -> Optional[dict[str, Any]]:
@@ -58,9 +62,9 @@ class Character:
         data = self.get_all_data()
         return data["x"], data["y"]
 
-    def get_inventory(self) -> list[dict[str, str|int]]:
+    def get_inventory(self) -> dict[str, int]:
         """
         Get character's inventory
-        :return: List of item's information in inventory
+        :return: Dict of item's information in inventory
         """
-        return self.get_all_data()["inventory"]
+        return {item["code"]: item["quantity"] for item in self.get_all_data()["inventory"] if item["code"]}

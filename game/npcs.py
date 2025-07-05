@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import Optional, Any
 
-from game.data.maps_loader import MapsLoader
+from game.data.npcs_loader import NPCsLoader
 
 
 class NPCs:
 
-    _npcs = MapsLoader.load()
+    _npcs = NPCsLoader.load()
 
 
     @classmethod
@@ -25,9 +25,15 @@ class NPCs:
         return None
 
     @classmethod
-    def __getattr__(cls, item):
-        return cls[item]
-
-    @classmethod
-    def __getitem__(cls, item):
-        return cls._npcs[item]
+    def get(cls, npcs_code: str) -> dict[str, Any]:
+        """
+        Get npc information
+        :param npcs_code: str, npc code
+        :return: Dict[str, Any] like:
+        {
+            "description": "Description text ipsum",
+            "type": "trader",
+            "shop": [{"code": "topaz_book", "currency": "elemental_page", "buy_price": 30, "sell_price": null}, ...]
+        }
+        """
+        return cls._npcs[npcs_code]

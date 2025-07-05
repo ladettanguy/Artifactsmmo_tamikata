@@ -1,33 +1,22 @@
-from typing import Optional
+from typing import Any
 
 from game.data.maps_loader import MapsLoader
 
 
-class NPCs:
+class Resources:
 
-    _npcs = MapsLoader.load()
-
+    _resources = MapsLoader.load()
 
     @classmethod
-    def search_item_vendor(cls, item_code: str) -> Optional[str]:
+    def get(cls, resources_code: str) -> dict[str, Any]:
         """
-        Search which npc buy or sell a item
-        :param item_code: Item code wanted
-        :return: str, npc code
+        Get resources information
+        :param resources_code: str, resources code
+        :return: dict[str, Any] like:
+        {
+            "skill": "woodcutting",
+            "level": 1,
+            "drops": [{"code": "sap", "rate": 10, "min_quantity": 1, "max_quantity": 1}, ...],
+        }
         """
-        for npc_code, npc_info in cls._npcs.items():
-            try:
-                for item in npc_info["shop"]:
-                    if item["code"] == item_code:
-                        return npc_code
-            except KeyError:
-                continue
-        return None
-
-    @classmethod
-    def __getattr__(cls, item):
-        return cls[item]
-
-    @classmethod
-    def __getitem__(cls, item):
-        return cls._npcs[item]
+        return cls._resources[resources_code]
