@@ -5,7 +5,7 @@ def empty_inventory_in_bank(character: "Character", move: bool = False) -> Respo
     """
     Empty the inventory in the bank
     :param character: Character to empty
-    :param move: optionnal param to automatically move in bank tile
+    :param move: optional param to automatically move in bank tile
     :return: requests.Response
     """
     if move:

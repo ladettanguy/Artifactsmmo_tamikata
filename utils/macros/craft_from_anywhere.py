@@ -11,8 +11,8 @@ def craft_from_anywhere(character: Character, item_code: str, quantity: int) -> 
     Craft an item without knowing where crafting it
     :param character: Character object
     :param item_code: Item code
-    :param quantity:
-    :return:
+    :param quantity: quantity to craft
+    :return: requests.Response
     """
 
     if not Items.is_craftable(item_code):

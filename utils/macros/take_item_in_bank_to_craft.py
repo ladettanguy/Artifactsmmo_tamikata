@@ -9,6 +9,13 @@ from game.player.character import Character
 
 
 def take_missing_item_in_bank_to_craft(character: Character, item_code: str, quantity: int) ->  Optional[requests.Response]:
+    """
+    Move to the bank, and take missing item for a craft.
+    :param character: Character object
+    :param item_code: str, item code
+    :param quantity: int, quantity to craft
+    :return: Optional[requests.Response]
+    """
     map_tile = Maps.POINT_OF_INTEREST.bank.bank
     character.action.move(*map_tile)
 
