@@ -11,10 +11,10 @@ class Items:
     @classmethod
     def get_item_need_to_craft(cls, item_code, quantity):
         """
-
-        :param item_code:
-        :param quantity:
-        :return:
+        Get all item needed to craft item in the correct quantity
+        :param item_code: str, Item code
+        :param quantity: int, Quantity of item wanted to craft
+        :return: Dict[str, int] like: {"copper_bar": 10, ...}
         """
         item_info = Items.get(item_code)
         if "craft" not in item_info:
@@ -45,25 +45,9 @@ class Items:
             "type": "consumable",
             "subtype": "food",
             "description": "description text ipsum",
-            "conditions": [],
-            "effects": [
-                {
-                    "code": "heal",
-                    "value": 75,
-                    "description": "Heal 75 HP when the item is used."
-                }
-            ],
-            "craft": {
-                "skill": "cooking",
-                "level": 1,
-                "items": [
-                    {
-                        "code": "gudgeon",
-                        "quantity": 1
-                    }
-                ],
-                "quantity": 1
-            },
+            "conditions": [{"code": "string", "operator": "eq", "value": 0}, ...],
+            "effects": [{"code": "heal", "value": 75, "description": "Heal 75 HP when the item is used."}, ...],
+            "craft": {"skill": "cooking", "level": 1, "items": [{ "code": "gudgeon", "quantity": 1}, ...], "quantity": 1},
             "tradeable": true
         }
         """

@@ -35,7 +35,11 @@ class Maps:
     def get_all_map(cls) -> dict[str, dict[str, Any]]:
         """
         Fetch all map dictionary
-        :return:
+        :return: Dict[str, Dict[str, Any] like:
+        {
+            "7 13": {"name": "Forest", "skin": "forest_bank2", "content": {"type": "bank", "code": "bank"},
+            ...
+        }
         """
         return cls._map_loaded
 
