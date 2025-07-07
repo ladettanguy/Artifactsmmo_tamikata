@@ -32,6 +32,14 @@ class Maps:
         cls.POINT_OF_INTEREST = _point_of_interest
 
     @classmethod
+    def get_all_map(cls) -> dict[str, dict[str, Any]]:
+        """
+        Fetch all map dictionary
+        :return:
+        """
+        return cls._map_loaded
+
+    @classmethod
     def get(cls, x, y) -> Optional[dict[str, Any]]:
         """
         Get map info of [x, y] tile

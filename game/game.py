@@ -1,77 +1,35 @@
 import asyncio
-from typing import Any
 
-from game.data.npcs_loader import NPCsLoader
-from game.scenario.nothing_to_do import NothingToDo
-from game.scenario.scenario import Scenario
 from game.player.character import Character
 from utils.request import request
-from utils.thread_scenario import ThreadScenario
-
 
 class Game:
 
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
     def __init__(self):
-        self.character = self.get_characters()
-        self.character_thread: dict[str, ThreadScenario] = {c: ThreadScenario(NothingToDo, c) for c in self.character.keys()}
+        self.characters = {d["name"]: Character(data=d)
+                          for d in request("GET", "/my/characters").json()["data"]}
 
-    def set_scenario(self, character_name: str, scenario: type[Scenario], args=(), start=False):
-        """
-        Set a new scenario to a character.
-        :param character_name: str, Character's name
-        :param scenario: type of Scenario
-        :param args: args for scenario __init__
-        :param start: Boolean, start the scenario now in a thread
-        :return:
-        """
-        if self.character_thread[character_name].is_alive():
-            self.character_thread[character_name].cancel()
-
-        self.character_thread[character_name] = ThreadScenario(scenario, name=character_name, args=args)
-        if start:
-            self.character_thread[character_name].start()
-
-    def start(self):
+    @classmethod
+    def start(cls):
         """
         This is for start the game. This function is blocking.
         """
-        self.run()
         asyncio.get_event_loop().run_forever()
 
-    def run(self):
-        """
-        This fort start the game. This function is not blocking.
-        """
-        for ct in self.character_thread.values():
-            ct.start()
-
-    @staticmethod
-    def create_character(name: str, skin: str) -> Character:
+    @classmethod
+    def create_character(cls, name: str, skin: str):
         """
         Create a character for the account
         :param name: str, Name of the future character
         :param skin: str, skin code
-        :return: Character object
         """
         r = request("POST", "characters/create", data={"name": name, "skin": skin})
-        if r.status_code != 200:
-            return
-
-        return Character(r.json()["data"])
-
-    @staticmethod
-    def get_characters() -> dict[str, Character]:
-        """
-        use to have a spécific character from his name
-        :param name: character's name
-        :return: Character or None
-        """
-        return {d["name"]: Character(data=d) for d in request("GET", "/my/characters").json()["data"]}
-
-    @staticmethod
-    def get_bank_item_info() -> dict[str, Any]:
-        """
-        Get items bank storage
-        :return: Dictionary of items banks storage
-        """
-        return request("GET", "/my/bank/items").json()["data"]
+        if r.status_code == 200:
+            cls._instance.characters[name] = Character(r.json()["data"])

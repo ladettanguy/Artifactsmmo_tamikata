@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from requests import Response
 from utils.request import request
@@ -6,20 +6,23 @@ from utils.decorator import waitable
 
 class Action:
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, character: "Character"):
+        self.name = character.name
+        self.character = character
 
     @waitable
-    def move(self, x: int, y: int) -> Response:
+    def move(self, x: int, y: int) -> Optional[Response]:
         """
         Moves a character on the map using the map's X and Y position.
         :param x: X Coordinate of wanted tile
         :param y: Y Coordinate of wanted tile
         :return: requests.Response
         """
-        return request("POST",
-                       f"my/{self.name}/action/move",
-                       data={"x": x, "y": y})
+        if not self.character.get_position() == (x, y):
+            return request("POST",
+                            f"my/{self.name}/action/move",
+                            data={"x": x, "y": y})
+        return None
 
     @waitable
     def fight(self) -> Response:
@@ -36,8 +39,9 @@ class Action:
         Recovers hit points by resting. (1 second per 5 HP, minimum 3 seconds)
         :return: requests.Response
         """
-        return request("POST",
-                       f"my/{self.name}/action/rest")
+        if not self.character._is_full_life():
+            return request("POST",
+                           f"my/{self.name}/action/rest")
 
     @waitable
     def gathering(self) -> Response:

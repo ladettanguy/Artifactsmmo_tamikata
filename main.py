@@ -1,16 +1,21 @@
-from game.data.items_loader import ItemsLoader
 from game.game import Game
-from game.npcs import NPCs
-from game.scenario.farm_gathering import FarmGathering
 from game.scenario.farm_fighting import FarmFighting
 from game.maps import Maps
-from game.items import Items
+from game.scenario.farm_gathering import FarmGathering
 
 game = Game()
 
-#for character_name, character_object in game.get_characters().items():
-#    game.set_scenario(character_name, FarmFighting, args=(character_object, Maps.POINT_OF_INTEREST.monster.chicken))
+characters = game.characters
+t1 = characters["tamikata1"]
+t2 = characters["tamikata2"]
+t3 = characters["tamikata3"]
+t4 = characters["tamikata4"]
+t5 = characters["tamikata5"]
 
-#game.start()
-print(Maps.POINT_OF_INTEREST.bank.bank)
-print(Items.get("wooden_staff"))
+t1.add_queue(FarmFighting(t1, Maps.POINT_OF_INTEREST.monster.sheep))
+t2.add_queue(FarmGathering(t2, Maps.POINT_OF_INTEREST.resource.coal_rocks))
+t3.add_queue(FarmGathering(t3, Maps.POINT_OF_INTEREST.resource.birch_tree))
+t4.add_queue(FarmGathering(t4, Maps.POINT_OF_INTEREST.resource.trout_fishing_spot))
+t5.add_queue(FarmGathering(t5, Maps.POINT_OF_INTEREST.resource.nettle))
+
+game.start()

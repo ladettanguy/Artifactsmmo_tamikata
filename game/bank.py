@@ -1,9 +1,27 @@
 from typing import Any
 
+from game.maps import Maps
 from utils.request import request_all_pages, request
 
 
 class Bank:
+
+    _banks = [(int(coord.split(" ")[0]), int(coord.split(" ")[1]))
+              for coord, map in Maps.get_all_map().items() if map["content"] and map["content"]["type"] == "bank"]
+
+    @classmethod
+    def get_nearest_bank(cls, actual_tile: tuple[int, int]) -> tuple[int, int]:
+        """
+        Get the nearest bank coord x, y
+        :param actual_tile: tuple[int, int], Your actual x, y
+        :return: tuple[int, int], bank coord
+        """
+        x, y = actual_tile
+
+        def distance2(p):
+            return (p[0] - x) ** 2 + (p[1] - y) ** 2
+
+        return min(cls._banks, key=distance2)
 
     @staticmethod
     def get_bank_item_info() -> list[dict[str, Any]]:

@@ -1,3 +1,4 @@
+import math
 from typing import Any
 
 from game.data.items_loader import ItemsLoader
@@ -6,6 +7,22 @@ from game.data.items_loader import ItemsLoader
 class Items:
 
     _items = ItemsLoader.load()
+
+    @classmethod
+    def get_item_need_to_craft(cls, item_code, quantity):
+        """
+
+        :param item_code:
+        :param quantity:
+        :return:
+        """
+        item_info = Items.get(item_code)
+        if "craft" not in item_info:
+            return None
+
+        craft = item_info["craft"]
+        nb_craft = math.ceil(quantity / craft["quantity"])
+        return {item["code"]: item["quantity"] * nb_craft for item in craft["items"]}
 
     @classmethod
     def is_craftable(cls, item_code: str) -> bool:

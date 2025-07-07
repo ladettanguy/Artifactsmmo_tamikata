@@ -16,13 +16,13 @@ def take_missing_item_in_bank_to_craft(character: Character, item_code: str, qua
     :param quantity: int, quantity to craft
     :return: Optional[requests.Response]
     """
+    if not Items.is_craftable(item_code):
+        return None
+
     map_tile = Maps.POINT_OF_INTEREST.bank.bank
     character.action.move(*map_tile)
 
     item_info = Items.get(item_code)
-    if "craft" not in item_info:
-        return None
-
     inventory = character.get_inventory()
     craft = item_info["craft"]
     nb_craft = math.ceil(quantity / craft["quantity"])
