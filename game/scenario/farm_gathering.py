@@ -20,10 +20,10 @@ class FarmGathering(Scenario):
         self.character.wait_cooldown()
         self.character.action.move(*self.farm_tile)
 
-        r = self.character.action.gathering()
-
         i = 0
         while i != self.nb_loop:
+            r = self.character.action.gathering()
+
             if r.status_code == 497:
                 # When inventory is full
 
