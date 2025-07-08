@@ -1,13 +1,11 @@
-import math
 import time
-from datetime import datetime, timezone
 from multiprocessing import Process
 from threading import Semaphore, Thread
 from typing import Optional, Any, Tuple
 
 from game.player.action import Action
 from game.scenario.scenario import Scenario
-from utils.request import request
+from utils.request import request, calculate_real_cooldown
 
 
 class Character:
@@ -31,7 +29,7 @@ class Character:
         Thread(target=_schedule, daemon=True).start()
 
 
-    def add_queue(self, scenario: Scenario, index: int = -1):
+    def add_queue(self, scenario: Scenario, index: int | None = None):
         """
         Set a new scenario to a character.
         :param scenario: type of Scenario
@@ -39,7 +37,10 @@ class Character:
         :param index: index to add in queue
         :return:
         """
-        self._queue.insert(index, Process(target=scenario.run, daemon=True))
+        if index is None or index >= len(self._queue):
+            self._queue.append(Process(target=scenario.run, daemon=True))
+        else:
+            self._queue.insert(index, Process(target=scenario.run, daemon=True))
         self._queue_lock.release()
 
     def cancel(self):
@@ -75,11 +76,7 @@ class Character:
         Get the actual cooldown of this character
         :return:
         """
-        date_str = self.get_all_data()["cooldown_expiration"]
-        date_str = date_str.replace("Z", "+00:00")
-        date = datetime.fromisoformat(date_str)
-        now = datetime.now(timezone.utc)
-        return max(math.ceil((date - now).total_seconds()), 0)
+        return calculate_real_cooldown(self.get_all_data()["cooldown_expiration"])
 
     def get_hp(self) -> int:
         """

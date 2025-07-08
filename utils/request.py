@@ -1,7 +1,10 @@
-import os
-from typing import Any
-
 import requests
+import math
+import os
+
+from typing import Any
+from datetime import datetime, timezone
+
 
 api_key = os.environ.get('ARTIFACTS_KEY', None) or exit()
 server = "https://api.artifactsmmo.com/"
@@ -30,3 +33,8 @@ def request_all_pages(method: str, endpoint: str, data=None) -> list[dict[str, A
         result.extend(info["data"])
         i = info["page"]
     return result
+
+def calculate_real_cooldown(expiration_date):
+    date_str = expiration_date.replace("Z", "+00:00")
+    date = datetime.fromisoformat(date_str)
+    return max(math.ceil((date - datetime.now(timezone.utc)).total_seconds()), 0)

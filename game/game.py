@@ -1,6 +1,7 @@
 import asyncio
 
 from game.player.character import Character
+from game.websocket.web_socket import WebSocket
 from utils.request import request
 
 class Game:
@@ -19,8 +20,9 @@ class Game:
     @classmethod
     def start(cls):
         """
-        This is for start the game. This function is blocking.
+        This is for start the game and connect the websocket. This function is blocking.
         """
+        WebSocket.start()
         asyncio.get_event_loop().run_forever()
 
     @classmethod

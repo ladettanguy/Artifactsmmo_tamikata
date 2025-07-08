@@ -25,7 +25,7 @@ class Craft(Scenario):
         total_quantity = sum(list(items_needed.values()))
         quantity_remaining = self.quantity
         nb_repetition = math.ceil(total_quantity / inventory_size)
-        quantity_by_repetition = math.floor(quantity_remaining / nb_repetition)
+        quantity_by_repetition = math.ceil(quantity_remaining / nb_repetition)
         for _ in range(nb_repetition):
             empty_inventory_in_bank(self.character, move=True)
             take_missing_item_in_bank_to_craft(self.character, self.item_code, min(quantity_by_repetition, quantity_remaining))
