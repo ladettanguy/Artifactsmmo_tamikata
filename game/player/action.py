@@ -254,7 +254,7 @@ class Action:
         return request("POST", f"/my/{self.name}/action/task/new")
 
     @waitable
-    def task_new(self) -> Response:
+    def task_cancel(self) -> Response:
         """
         Cancel a task for 1 tasks coin.
         :return: requests.Response

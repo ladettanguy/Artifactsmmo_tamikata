@@ -8,6 +8,3 @@ class Scenario(ABC):
         """
         Run the scenario.
         """
-
-    def cancel(self):
-        pass

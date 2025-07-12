@@ -1,4 +1,5 @@
 # Python script to update json with the same name
+from typing import Any
 
 import json
 import os
@@ -29,6 +30,12 @@ class ResourcesLoader(Updater, DataLoader):
             new_resource = resource.copy()
             new_resource.pop('name')
             new_resource.pop('code')
+            drops = {}
+            for drop in resource["drops"]:
+                new_drop = drop.copy()
+                code = new_drop.pop("code")
+                drops[code] = new_drop
+            new_resource["drops"] = drops
             result[resource['code']] = new_resource
 
         formatted_json = json.dumps(result, indent=4, ensure_ascii=False)

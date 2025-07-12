@@ -2,475 +2,416 @@
     "ash_tree": {
         "skill": "woodcutting",
         "level": 1,
-        "drops": [
-            {
-                "code": "ash_wood",
+        "drops": {
+            "ash_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sap",
+            "sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "apple",
+            "apple": {
                 "rate": 20,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "gudgeon_fishing_spot": {
         "skill": "fishing",
         "level": 1,
-        "drops": [
-            {
-                "code": "gudgeon",
+        "drops": {
+            "gudgeon": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "algae",
+            "algae": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "shell",
+            "shell": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "copper_rocks": {
         "skill": "mining",
         "level": 1,
-        "drops": [
-            {
-                "code": "copper_ore",
+        "drops": {
+            "copper_ore": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "topaz_stone",
+            "topaz_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "emerald_stone",
+            "emerald_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "ruby_stone",
+            "ruby_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sapphire_stone",
+            "sapphire_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "sunflower_field": {
         "skill": "alchemy",
         "level": 1,
-        "drops": [
-            {
-                "code": "sunflower",
+        "drops": {
+            "sunflower": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "shrimp_fishing_spot": {
         "skill": "fishing",
         "level": 10,
-        "drops": [
-            {
-                "code": "shrimp",
+        "drops": {
+            "shrimp": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "golden_shrimp",
+            "golden_shrimp": {
                 "rate": 1000,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "algae",
+            "algae": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "shell",
+            "shell": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "iron_rocks": {
         "skill": "mining",
         "level": 10,
-        "drops": [
-            {
-                "code": "iron_ore",
+        "drops": {
+            "iron_ore": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "topaz_stone",
+            "topaz_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "emerald_stone",
+            "emerald_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "ruby_stone",
+            "ruby_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sapphire_stone",
+            "sapphire_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "spruce_tree": {
         "skill": "woodcutting",
         "level": 10,
-        "drops": [
-            {
-                "code": "spruce_wood",
+        "drops": {
+            "spruce_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sap",
+            "sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "coal_rocks": {
         "skill": "mining",
         "level": 20,
-        "drops": [
-            {
-                "code": "coal",
+        "drops": {
+            "coal": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "topaz_stone",
+            "topaz_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "emerald_stone",
+            "emerald_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "ruby_stone",
+            "ruby_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sapphire_stone",
+            "sapphire_stone": {
                 "rate": 200,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "trout_fishing_spot": {
         "skill": "fishing",
         "level": 20,
-        "drops": [
-            {
-                "code": "trout",
+        "drops": {
+            "trout": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "algae",
+            "algae": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "small_pearls",
+            "small_pearls": {
                 "rate": 300,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "birch_tree": {
         "skill": "woodcutting",
         "level": 20,
-        "drops": [
-            {
-                "code": "birch_wood",
+        "drops": {
+            "birch_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sap",
+            "sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "nettle": {
         "skill": "alchemy",
         "level": 20,
-        "drops": [
-            {
-                "code": "nettle_leaf",
+        "drops": {
+            "nettle_leaf": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "bass_fishing_spot": {
         "skill": "fishing",
         "level": 30,
-        "drops": [
-            {
-                "code": "bass",
+        "drops": {
+            "bass": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "algae",
+            "algae": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "small_pearls",
+            "small_pearls": {
                 "rate": 300,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "gold_rocks": {
         "skill": "mining",
         "level": 30,
-        "drops": [
-            {
-                "code": "gold_ore",
+        "drops": {
+            "gold_ore": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "topaz_stone",
+            "topaz_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "emerald_stone",
+            "emerald_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "ruby_stone",
+            "ruby_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sapphire_stone",
+            "sapphire_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "dead_tree": {
         "skill": "woodcutting",
         "level": 30,
-        "drops": [
-            {
-                "code": "dead_wood",
+        "drops": {
+            "dead_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sap",
+            "sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "strange_rocks": {
         "skill": "mining",
         "level": 35,
-        "drops": [
-            {
-                "code": "strange_ore",
+        "drops": {
+            "strange_ore": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "diamond_stone",
+            "diamond_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "magic_tree": {
         "skill": "woodcutting",
         "level": 35,
-        "drops": [
-            {
-                "code": "magic_wood",
+        "drops": {
+            "magic_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "magic_sap",
+            "magic_sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "salmon_fishing_spot": {
         "skill": "fishing",
         "level": 40,
-        "drops": [
-            {
-                "code": "salmon",
+        "drops": {
+            "salmon": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "algae",
+            "algae": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "small_pearls",
+            "small_pearls": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "glowstem": {
         "skill": "alchemy",
         "level": 40,
-        "drops": [
-            {
-                "code": "glowstem_leaf",
+        "drops": {
+            "glowstem_leaf": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "mithril_rocks": {
         "skill": "mining",
         "level": 40,
-        "drops": [
-            {
-                "code": "mithril_ore",
+        "drops": {
+            "mithril_ore": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "topaz_stone",
+            "topaz_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "emerald_stone",
+            "emerald_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "ruby_stone",
+            "ruby_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "sapphire_stone",
+            "sapphire_stone": {
                 "rate": 100,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     },
     "maple_tree": {
         "skill": "woodcutting",
         "level": 40,
-        "drops": [
-            {
-                "code": "maple_wood",
+        "drops": {
+            "maple_wood": {
                 "rate": 1,
                 "min_quantity": 1,
                 "max_quantity": 1
             },
-            {
-                "code": "maple_sap",
+            "maple_sap": {
                 "rate": 10,
                 "min_quantity": 1,
                 "max_quantity": 1
             }
-        ]
+        }
     }
 }

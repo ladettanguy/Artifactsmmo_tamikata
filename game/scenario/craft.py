@@ -18,17 +18,18 @@ class Craft(Scenario):
 
     def run(self):
         inventory_size = self.character.get_inventory_max_size()
-        items_needed = Items.get_item_need_to_craft(self.item_code, self.quantity)
+        items_needed = Items.get_item_need_to_craft(self.item_code, 1)
         if not items_needed:
             return
 
-        total_quantity = sum(list(items_needed.values()))
+        quantity_one_item = sum(list(items_needed.values()))
+        max_by_craft = math.floor(inventory_size / quantity_one_item)
+        nb_repetition =  math.ceil(self.quantity / max_by_craft)
         quantity_remaining = self.quantity
-        nb_repetition = math.ceil(total_quantity / inventory_size)
-        quantity_by_repetition = math.ceil(quantity_remaining / nb_repetition)
         for _ in range(nb_repetition):
+            quantity = min(quantity_remaining, max_by_craft)
             empty_inventory_in_bank(self.character, move=True)
-            take_missing_item_in_bank_to_craft(self.character, self.item_code, min(quantity_by_repetition, quantity_remaining))
-            craft_from_anywhere(self.character, self.item_code, min(quantity_by_repetition, quantity_remaining))
-            quantity_remaining -= quantity_by_repetition
+            take_missing_item_in_bank_to_craft(self.character, self.item_code, quantity)
+            craft_from_anywhere(self.character, self.item_code, quantity)
+            quantity_remaining -= quantity
         empty_inventory_in_bank(self.character, move=True)

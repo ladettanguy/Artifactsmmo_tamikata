@@ -1,11 +1,19 @@
 from typing import Any
 
-from game.data.maps_loader import MapsLoader
+from game.data.resources_loader import ResourcesLoader
+from game.maps import Maps
 
 
 class Resources:
 
-    _resources = MapsLoader.load()
+    _resources = ResourcesLoader.load()
+
+    @classmethod
+    def get_map_resource(cls, resource_code):
+        for code, resource_info in cls._resources.items():
+            if resource_code in resource_info["drops"]:
+                return Maps.POINT_OF_INTEREST.resource[code]
+        return None
 
     @classmethod
     def get(cls, resources_code: str) -> dict[str, Any]:

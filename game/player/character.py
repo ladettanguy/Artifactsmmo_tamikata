@@ -18,6 +18,8 @@ class Character:
         self._processing_scenario: Process | None = None
         self._queue_lock: Semaphore = Semaphore(0)
 
+        self.last_cooldown_expiration = self.get_all_data()["cooldown_expiration"]
+
         def _schedule():
             while True:
                 self._queue_lock.acquire()
@@ -33,7 +35,6 @@ class Character:
         """
         Set a new scenario to a character.
         :param scenario: type of Scenario
-        :param args: args for scenario __init__
         :param index: index to add in queue
         :return:
         """
@@ -71,12 +72,38 @@ class Character:
         """
         return request("GET", f"/characters/{self.name}").json()["data"]
 
+    def get_task_info(self) -> dict[str, str | int]:
+        """
+        Get all information about actual task
+        :return: dict[str, str|int] like:
+        {
+            "task": chickens,
+            "task_type": monsters,
+            "task_progress": 0,
+            "task_total": 239,
+        }
+        """
+        info = self.get_all_data()
+        return {
+            "task": info["task"],
+            "task_type": info["task_type"],
+            "task_progress": info["task_progress"],
+            "task_total": info["task_total"],
+        }
+
     def get_cooldown(self) -> int:
         """
         Get the actual cooldown of this character
         :return:
         """
-        return calculate_real_cooldown(self.get_all_data()["cooldown_expiration"])
+        return calculate_real_cooldown(self.get_cooldown_expiration())
+
+    def get_cooldown_expiration(self) -> int:
+        """
+        Get the actual cooldown of this character
+        :return:
+        """
+        return self.last_cooldown_expiration
 
     def get_hp(self) -> int:
         """
